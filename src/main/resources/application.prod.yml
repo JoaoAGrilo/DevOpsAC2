@@ -1,0 +1,12 @@
+# Configuração do banco de dados PostgreSQL para o ambiente de produção
+spring:
+  datasource:
+    url: jdbc:postgresql://prod-db-server:5432/proddb
+    driverClassName: org.postgresql.Driver
+    username: prod_user
+    password: prod_password
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  show-sql: false 

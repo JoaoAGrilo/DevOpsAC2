@@ -1,0 +1,12 @@
+# Configuração do banco de dados PostgreSQL para o ambiente de staging
+spring:
+  datasource:
+    url: jdbc:postgresql://staging-db-server:5432/stagingdb
+    driverClassName: org.postgresql.Driver
+    username: staging_user
+    password: staging_password
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  show-sql: true
