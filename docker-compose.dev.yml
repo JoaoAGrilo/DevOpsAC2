@@ -5,23 +5,23 @@ services:
     image: postgres
     environment:
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: papi_staging
+      POSTGRES_DB: papi_dev
     volumes:
-      - db-volume-staging:/var/lib/postgresql/data
+      - db-volume-dev:/var/lib/postgresql/data
 
   api:
-    image: joaoagrilo/ac2:staging
+    image: joaoagrilo/ac2:dev
     environment:
-      SPRING_PROFILES_ACTIVE: staging
+      SPRING_PROFILES_ACTIVE: dev
       DB_HOST: database
       DB_PORT: 5432
-      DB_NAME: papi_staging
+      DB_NAME: papi_dev
       DB_USER: postgres
       DB_PASSWORD: postgres
     ports:
-      - "8485:8585"
+      - "8585:8585"
     depends_on:
       - database
 
 volumes:
-  db-volume-staging:
+  db-volume-dev:
