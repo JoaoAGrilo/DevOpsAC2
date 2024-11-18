@@ -3,25 +3,27 @@ version: '3'
 services:
   database:
     image: postgres
+    container_name: staging-database
     environment:
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: papi_staging
+      POSTGRES_DB: staging_db
     volumes:
-      - db-volume-staging:/var/lib/postgresql/data
+      - db-staging-volume:/var/lib/postgresql/data
 
   api:
     image: joaoagrilo/ac2:staging
+    container_name: staging-api
     environment:
       SPRING_PROFILES_ACTIVE: staging
       DB_HOST: database
       DB_PORT: 5432
-      DB_NAME: papi_staging
+      DB_NAME: staging_db
       DB_USER: postgres
       DB_PASSWORD: postgres
     ports:
-      - "8485:8585"
+      - "8082:8080"
     depends_on:
       - database
 
 volumes:
-  db-volume-staging:
+  db-staging-volume:
